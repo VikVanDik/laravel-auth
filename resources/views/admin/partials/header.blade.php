@@ -1,5 +1,5 @@
-<header>
-    <nav class="navbar navbar-dark">
+<header class="bg-dark">
+    <nav class="navbar">
         <div class="container-fluid">
           <a class="navbar-brand" href="{{route('home')}}" target="_blank">Vai al sito</a>
           <form class="d-flex" role="search" action="{{route('logout')}}" method="POST">

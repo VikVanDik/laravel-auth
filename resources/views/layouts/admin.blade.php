@@ -13,13 +13,15 @@
 </head>
 <body>
 
-@include('admin.partials.header')
+    @include('admin.partials.header')
 
 <div class="main-wrapper d-flex">
 
-    @yield('content')
-
     @include('admin.partials.sidebar')
+    <div class="container my-5">
+        @yield('content')
+    </div>
+
 </div>
 
 </body>
