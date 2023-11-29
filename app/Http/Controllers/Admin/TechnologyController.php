@@ -37,7 +37,15 @@ class TechnologyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+
+        $new_technology = new Technology();
+
+        $new_technology->fill($form_data);
+
+        $new_technology->save();
+
+        return redirect()->route('admin.technologies.index');
     }
 
     /**
@@ -69,9 +77,13 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Technology $technology)
     {
-        //
+        $form_data = $request->all();
+
+        $technology->update($form_data);
+
+        return redirect()->route('admin.technologies.index');
     }
 
     /**
@@ -80,8 +92,9 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+        return redirect()->route('admin.types.index')->with("success", "Hai eliminato $technology->name con successo");
     }
 }

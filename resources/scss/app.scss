@@ -4,3 +4,12 @@
 header {
     color: white;
 }
+
+.no-border {
+    border: none !important;
+}
+
+.no-border:focus {
+    border: none !important;
+    outline: none !important;
+}

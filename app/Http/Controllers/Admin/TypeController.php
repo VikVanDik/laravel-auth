@@ -39,11 +39,11 @@ class TypeController extends Controller
     {
         $form_data = $request->all();
 
-        $new_date = new Type();
+        $new_type = new Type();
 
-        $new_date->fill($form_data);
+        $new_type->fill($form_data);
 
-        $new_date->save();
+        $new_type->save();
 
         return redirect()->route('admin.types.index');
     }
@@ -95,6 +95,6 @@ class TypeController extends Controller
     public function destroy(Type $type)
     {
         $type->delete();
-        return redirect()->route('admin.types.index')->with("success", "Hai eliminato il progetto con successo");
+        return redirect()->route('admin.types.index')->with("success", "Hai eliminato $type->name con successo");
     }
 }

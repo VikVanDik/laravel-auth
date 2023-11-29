@@ -2,7 +2,9 @@
 
 @section('content')
 
-<form action="{{route('admin.projects.store')}}" method="POST">
+<h1 class="">Creazione nuovo progetto</h1>
+
+<form action="{{route('admin.projects.store')}}" method="POST" class="my-5">
     @csrf
 
     <div class="mb-3">
@@ -30,7 +32,7 @@
         <input type="text" class="form-control" id="description" name="description">
     </div>
 
-    <button type="submit" class="btn btn-primary">Invia</button>
+    <button type="submit" class="btn btn-success">Crea</button>
     <button type="reset" class="btn btn-danger">Annulla</button>
   </form>
 

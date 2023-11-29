@@ -3,6 +3,7 @@
 @section('content')
 
 <h3>Lista tipi</h3>
+<span class="text-warning">Clicca sul nome per modificarlo</span>
 
 <table class="table">
     <thead>
@@ -19,7 +20,7 @@
                 method="POST"
                 class="d-inline-block"
                 onsubmit="return confirm('Sei sicuro di voler modificare {{$type->name}}?')">
-                <td><input type="text" value="{{$type->name}}" name="name" id="name"></td>
+                <td><input type="text" value="{{$type->name}}" name="name" id="name" class="no-border"></td>
                 <td>
                     @csrf
                     @method('PUT')
@@ -42,7 +43,7 @@
     </tbody>
   </table>
 
-  <div>
+  <div class="my-5">
         <h3>Inserisci un nuovo tipo</h3>
         <form action="{{route('admin.types.store')}}" method="POST">
             @csrf
@@ -52,7 +53,7 @@
               <input type="text" class="form-control" id="name" name="name">
             </div>
 
-            <button type="submit" class="btn btn-primary">Invia</button>
+            <button type="submit" class="btn btn-success">Crea</button>
             <button type="reset" class="btn btn-danger">Annulla</button>
           </form>
   </div>
