@@ -25,7 +25,16 @@
                 <td>
                     <a href="{{route('admin.projects.show', $project)}}" class="btn btn-info"><i class="fa-solid fa-eye"></i></a>
                     <a href="{{route('admin.projects.create')}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                    @include('admin.partials.formDelete')
+                    <form
+                        class="d-inline-block"
+                        action="{{route('admin.projects.destroy', $project->id)}}"
+                        method="POST"
+                        onsubmit="return confirm('Sei sicuro di voler eliminare?')"
+                                        >
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    </form>
                 </td>
             </tr>
 

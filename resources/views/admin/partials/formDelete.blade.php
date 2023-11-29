@@ -1,6 +1,6 @@
 <form
     class="d-inline-block"
-    action="#"
+    action="{{route('admin.projects.destroy', $project->id)}}"
     method="POST"
     onsubmit="return confirm('Sei sicuro di voler eliminare?')"
 >

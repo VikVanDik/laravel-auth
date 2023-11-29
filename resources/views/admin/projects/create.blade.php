@@ -10,8 +10,8 @@
       <input type="text" class="form-control" id="name" name="name">
     </div>
     <div class="mb-3">
-      <label for="date" class="form-label">Data di creazione</label>
-      <input type="date" class="form-control" id="date" name="date">
+      <label for="creation" class="form-label">Data di creazione</label>
+      <input type="date" class="form-control" id="creation" name="creation">
     </div>
     <div class="mb-3">
         <label for="url" class="form-label">URL</label>

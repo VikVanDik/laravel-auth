@@ -37,7 +37,15 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+
+        $new_date = new Type();
+
+        $new_date->fill($form_data);
+
+        $new_date->save();
+
+        return redirect()->route('admin.types.index');
     }
 
     /**
@@ -69,9 +77,13 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Type $type)
     {
-        //
+        $form_data = $request->all();
+
+        $type->update($form_data);
+
+        return redirect()->route('admin.types.index');
     }
 
     /**
@@ -80,8 +92,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index')->with("success", "Hai eliminato il progetto con successo");
     }
 }
