@@ -26,7 +26,14 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+
+        $title = "Crea nuovo progetto";
+        $method = "POST";
+        $route = route('admin.projects.store');
+        $post = null;
+        $button = "Crea";
+
+        return view('admin.projects.create', compact('title','method', 'route', 'post', 'button'));
     }
 
     /**
@@ -69,9 +76,15 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+        $title = "Modifica $project->name";
+        $method = "PUT";
+        $route = route('admin.projects.update', $project);
+        $post = null;
+        $button = "Modifica";
+
+        return view('admin.projects.create', compact('title','method', 'route', 'post', 'project', 'button'));
     }
 
     /**
@@ -81,9 +94,15 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $form_data = $request->all();
+
+        $project->fill($form_data);
+
+        $project->update();
+
+        return redirect()->route('admin.projects.index');
     }
 
     /**

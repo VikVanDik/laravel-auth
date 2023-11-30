@@ -24,7 +24,7 @@
                 <td>{{$project->creation}}</td>
                 <td>
                     <a href="{{route('admin.projects.show', $project)}}" class="btn btn-info"><i class="fa-solid fa-eye"></i></a>
-                    <a href="{{route('admin.projects.create')}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                     <form
                         class="d-inline-block"
                         action="{{route('admin.projects.destroy', $project->id)}}"
