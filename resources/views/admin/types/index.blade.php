@@ -4,6 +4,11 @@
 
 <h3>Lista tipi</h3>
 <span class="text-warning">Clicca sul nome per modificarlo</span>
+@if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+@endif
 
 <table class="table">
     <thead>
@@ -13,31 +18,34 @@
       </tr>
     </thead>
     <tbody>
-        @foreach ($types as $type )
-            <tr>
+        @foreach ($types as $type)
+        <tr>
+            <td>
                 <form
                 action="{{ route('admin.types.update', $type) }}"
                 method="POST"
                 class="d-inline-block"
-                onsubmit="return confirm('Sei sicuro di voler modificare {{$type->name}}?')">
-                <td><input type="text" value="{{$type->name}}" name="name" id="name" class="no-border"></td>
-                <td>
-                    @csrf
-                    @method('PUT')
-                    <button type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                    </form>
-                    <form
-                        class="d-inline-block"
-                        action="{{route('admin.types.destroy', $type->id)}}"
-                        method="POST"
-                        onsubmit="return confirm('Sei sicuro di voler eliminare {{$type->name}}?')"
-                                        >
-                        @csrf
-                        @method('DELETE')
+                onsubmit="return confirm('Sei sicuro di voler modificare {{$type->name}}?')"
+                id="form-edit">
+                <input type="text" value="{{$type->name}}" name="name" id="name" class="no-border">
+                @csrf
+                @method('PUT')
+                </form>
+            </td>
+            <td>
+                <button onclick="submitForm()" type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
+                <form
+                class="d-inline-block"
+                action="{{route('admin.types.destroy', $type->id)}}"
+                method="POST"
+                onsubmit="return confirm('Sei sicuro di voler eliminare {{$type->name}}?')"
+                >
+                @csrf
+                @method('DELETE')
                         <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
+                </form>
+            </td>
+        </tr>
 
         @endforeach
     </tbody>
@@ -57,5 +65,12 @@
             <button type="reset" class="btn btn-danger">Annulla</button>
           </form>
   </div>
+
+  <script>
+    function submitForm(){
+        const form = document.getElementById('form-edit');
+        form.submit();
+    }
+  </script>
 
 @endsection

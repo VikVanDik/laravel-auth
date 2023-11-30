@@ -5,6 +5,12 @@
 <h3>Lista tecnologie</h3>
 <span class="text-warning">Clicca sul nome per modificarlo</span>
 
+@if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+@endif
+
 <table class="table my-5">
     <thead>
       <tr>
@@ -15,26 +21,29 @@
     <tbody>
         @foreach ($technologies as $technology )
             <tr>
-                <form
-                action="{{ route('admin.technologies.update', $technology) }}"
-                method="POST"
-                class="d-inline-block"
-                onsubmit="return confirm('Sei sicuro di voler modificare {{$technology->name}}?')">
-                <td><input type="text" value="{{$technology->name}}" name="name" id="name" class="no-border"></td>
                 <td>
+                    <form
+                    action="{{ route('admin.technologies.update', $technology) }}"
+                    method="POST"
+                    class="d-inline-block"
+                    onsubmit="return confirm('Sei sicuro di voler modificare {{$technology->name}}?')"
+                    id="form-edit">
+                    <input type="text" value="{{$technology->name}}" name="name" id="name" class="no-border">
                     @csrf
                     @method('PUT')
-                    <button type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                     </form>
+                </td>
+                <td>
+                    <button onclick="submitForm()" type="submit" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button>
                     <form
-                        class="d-inline-block"
-                        action="{{route('admin.technologies.destroy', $technology->id)}}"
-                        method="POST"
-                        onsubmit="return confirm('Sei sicuro di voler eliminare {{$technology->name}}?')"
-                                        >
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    class="d-inline-block"
+                    action="{{route('admin.technologies.destroy', $technology->id)}}"
+                    method="POST"
+                    onsubmit="return confirm('Sei sicuro di voler eliminare {{$technology->name}}?')"
+                    >
+                    @csrf
+                    @method('DELETE')
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                     </form>
                 </td>
             </tr>
@@ -57,5 +66,12 @@
         <button type="reset" class="btn btn-danger">Annulla</button>
       </form>
 </div>
+
+<script>
+    function submitForm(){
+        const form = document.getElementById('form-edit');
+        form.submit();
+    }
+</script>
 
 @endsection

@@ -83,7 +83,7 @@ class TechnologyController extends Controller
 
         $technology->update($form_data);
 
-        return redirect()->route('admin.technologies.index');
+        return redirect()->route('admin.technologies.index')->with('success', 'Categoria aggiornata con successo');
     }
 
     /**
